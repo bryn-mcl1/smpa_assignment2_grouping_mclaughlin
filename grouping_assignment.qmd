@@ -1,6 +1,6 @@
 ---
 title: "SMPA - Grouping Assignment"
-author: "YourNameHere"
+author: "Bryn McLaughlin"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
@@ -12,9 +12,9 @@ format:
 #load libraries
 library(tidyverse)
 library(lubridate)
-
 #load data
 payments <- readRDS("data/trump_campaign_payments.rds")
+
 
 ```
 
