@@ -84,7 +84,7 @@ How much was spent in the 2017 vs. 2018 reporting year?
 payments %>%
   select (report_year, disbursement_amount) %>% 
   filter(report_year == 2017 |2018) %>% 
-  group_by(report_year) %>% 
+  group_by(report_year,) %>% 
   summarise(total = sum(disbursement_amount))
   
 # I selected the reporting year and amount, filtered to only 2017 and 2018, grouped by report year, and made the sum of disbursements a new aggregate total.
@@ -97,10 +97,11 @@ Tally the total overall disbursement amounts for each month (distinguishing betw
 
 payments  %>%
   select (report_year,disbursement_month, disbursement_amount) %>% 
-  group_by(report_year,disbursement_month) %>% 
-  summarise(total = sum(disbursement_amount))
+  group_by(report_year, disbursement_month) %>% 
+  summarise(total = sum(disbursement_amount)) %>% 
+  arrange(desc(total))
 
-#selected year, month, and amount, grouped by year and month, turned sum of each months spending into a new aggregate variable.
+#The month with the highest spending was October 2018. I selected year, month, and amount, grouped by year and month, and summed each months spending into a new aggregate variable. I then arranged in descending order.
 
 ```
 
@@ -114,7 +115,7 @@ Which recipient (recipient_name) was paid the most in the 2020 election cycle?
   summarise(total = sum(disbursement_amount)) %>% 
   arrange(desc(total))
 
-#Filtered to only election cycle 2020, group by recipient name, summed the disbursement amount, then arranged the aggregate 'total' variable in descending order. The highest paid recipient was AMERICAN MADE MEDIA CONSULTANTS, LLC.
+#The highest paid recipient was AMERICAN MADE MEDIA CONSULTANTS, LLC. I filtered to only election cycle 2020, group by recipient name, summed the disbursement amount, then arranged the aggregate 'total' variable in descending order. 
 
 ```
 
@@ -191,5 +192,5 @@ payments %>%
   summarise(count=n(), total = sum(disbursement_amount)) %>% 
   arrange(desc(total))
 
-#The top payment category for "GLASSNER, MICHAEL" was PAYROLL, where he was paid $499000. I selected recipeint name, disbursemnt description and amount, then filtered for the individual. Next I grouped by description, summarized count and disbursement sum in the aggregate variable "total", then arranged by descending total.
+#The top payment category for "GLASSNER, MICHAEL" was PAYROLL, where he was paid $499000. I selected recipient name, disbursement description and amount, then filtered for the individual. Next I grouped by description, summarized count and disbursement sum in the aggregate variable "total", then arranged by descending total.
 ```
